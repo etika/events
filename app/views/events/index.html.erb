@@ -1,0 +1,31 @@
+</br>
+</br>
+<h1> All Events </h1>
+<span class="message"></span>
+<div class="row">
+  <% @events.each do |event|%>
+	  <div class="col-sm-4">
+	    <div class="card">
+	      <div class="card-body">
+	        <h5 class="card-title"><%=event.name%></h5>
+	        <p class="card-text"><%= event.event_category.name%></p>
+	        <p class="card-text"><%= event.event_date%></p>
+
+	        <%if current_user.gender  == "female"%>
+	          <% if event.fees.present?%>
+	            <%discounted_price= event.fees - (event.fees*5)/100%>
+	          <%end%>
+	          <p class="card-text"><%= discounted_price%></p>
+	        <%else%>
+	        <p class="card-text"><%= event.fees%></p>
+	        <%end%>
+	        <% if event.users.pluck(:id).include?(current_user.id) %>
+ 	        <%= link_to "Attending", attend_event_path(attend: false, event_id: event.id), method: :post, class: "btn btn-primary", remote: true %>
+	        <%else%>
+     	        <%= link_to "Attend", attend_event_path(attend: true, event_id: event.id), method: :post, class: "btn btn-primary", remote: true %>
+	        <%end%>
+	      </div>
+	    </div>
+	  </div>
+  <%end%>
+</div>

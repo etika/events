@@ -1,0 +1,10 @@
+
+<h3>Show Event Category</h3>
+
+<h3><%= @event_category.name %></h3>
+
+<p><%= @event_category.description %></p>
+
+<%= link_to "Edit Event Category", edit_event_category_path(@event_category) %>
+<br/>
+<%= link_to "Delete Event Category", event_category_path(@event_category), method: :delete, data: {confirm: "Are you sure?"} %>

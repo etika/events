@@ -1,0 +1,11 @@
+
+<h3>Event Category Page</h3>
+
+
+<% @event_categories.each do |ec| %>
+  <h3><%= ec.name %></h3>
+  <div>
+    <%= ec.description   %>
+  </div>
+  <br>
+<% end %>
